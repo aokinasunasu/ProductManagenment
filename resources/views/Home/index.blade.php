@@ -4,7 +4,7 @@
 <div class="container">
     <h2>機能一覧</h2>
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">商品</a>
+        <a href="{{ action('ProductsController@index') }}" class="list-group-item list-group-item-action">商品</a>
         <a href="#" class="list-group-item list-group-item-action">取引先</a>
         <a href="#" class="list-group-item list-group-item-action">項目定義</a>
         <a href="#" class="list-group-item list-group-item-action">入庫登録</a>
