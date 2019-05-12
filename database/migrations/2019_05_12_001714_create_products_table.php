@@ -19,10 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('abbreviation');
             $table->integer('category');
-            $table->integer('kbn');
+            $table->integer('use_flg');
+            $table->integer('unit');
             $table->integer('unit_selling_price')->default(0);
             $table->integer('unit_price')->default(0);
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }
