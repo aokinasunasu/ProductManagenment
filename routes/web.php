@@ -26,3 +26,14 @@ Route::get('/product/edit', 'ProductsController@edit');
 Route::post('/product/update', 'ProductsController@update');
 // 削除
 Route::post('/product/delete', 'ProductsController@delete');
+
+// 取引先一覧
+Route::get('/suppliers', 'SuppliersController@index');
+// 新規
+Route::get('/suppliers/new', 'SuppliersController@new');
+// 編集
+Route::get('/suppliers/edit', 'SuppliersController@edit');
+// 更新
+Route::post('/suppliers/update', 'SuppliersController@update');
+// 削除
+Route::post('/suppliers/delete', 'SuppliersController@delete');

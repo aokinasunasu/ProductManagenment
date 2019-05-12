@@ -71,7 +71,7 @@
             <input type="hidden" name="id" value="{{$form->id}}">
             <tr>
                 <th colspan="6">
-                    <input type="submit" value="登録" class="btn btn-success btn-lg btn-block">
+                    <input type="submit" value="更新" class="btn btn-success btn-lg btn-block">
                 </th>
             </tr>
         </table>

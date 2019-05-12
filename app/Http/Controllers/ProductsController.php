@@ -62,9 +62,9 @@ class ProductsController extends Controller
             $product->fill($form)->save();
             return redirect('/product')->with('success_message', 'データの作成に成功しました。');
         }
-
     }
 
+    // 物理削除なし
     public function delete() {
         return view('Product.index');
     }

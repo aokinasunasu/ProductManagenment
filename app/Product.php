@@ -11,7 +11,6 @@ class Product extends Model
         'name' => 'required',
         'abbreviation' => 'required',
         'category' => 'required',
-        'use_flg' => 'required',
         'unit' => 'required|integer',
         'unit_selling_price' => 'required|integer',
         'unit_price' => 'required|integer',
