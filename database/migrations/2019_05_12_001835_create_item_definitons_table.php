@@ -14,7 +14,10 @@ class CreateItemDefinitonsTable extends Migration
     public function up()
     {
         Schema::create('item_definitons', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('item');
+            $table->string('name');
+            $table->string('initial_name');
+            $table->integer('kbn');
             $table->timestamps();
         });
     }
