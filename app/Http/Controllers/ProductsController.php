@@ -48,6 +48,7 @@ class ProductsController extends Controller
     public function update(Request $request) {
         // return view('Product.index');
         $form = $request->all();
+        // バリデーション
         $this->validate($request, Product::$rules, Product::$messages);
 
         // id 存在:編集　
