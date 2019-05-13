@@ -30,37 +30,36 @@ class SuppliersController extends Controller
 
         // データ取得
         try {
-
             $id = $request->id;
-            $form = Product::find($id);
+            $form = Suppliers::find($id);
             $const = config('const');
 
         } catch (Exception $e) {
             return redirect('/product')->with('alert_message', 'データの取得に失敗しました');
             // echo '捕捉した例外: ',  $e->getMessage(), "\n";
         }
-        return view('Product.edit',[
+        return view('Suppliers.edit',[
             'form' => $form,
             'const' => $const,
         ]);
     }
 
     public function update(Request $request) {
-        // return view('Product.index');
+
         $form = $request->all();
         // バリデーション
-        $this->validate($request, Product::$rules, Product::$messages);
+        $this->validate($request, Suppliers::$rules, Suppliers::$messages);
 
         // id 存在:編集　
         if ($form['id']) {
-            $product = Product::find($form['id']);
-            $product->fill($form)->save();
-            return redirect('/product')->with('success_message', 'データの更新に成功しました。');
+            $suppliers = Suppliers::find($form['id']);
+            $suppliers->fill($form)->save();
+            return redirect('/suppliers')->with('success_message', 'データの更新に成功しました。');
         } else {
-            $product = new Product;
+            $suppliers = new Suppliers;
             unset($form['_token']);
-            $product->fill($form)->save();
-            return redirect('/product')->with('success_message', 'データの作成に成功しました。');
+            $suppliers->fill($form)->save();
+            return redirect('/suppliers')->with('success_message', 'データの作成に成功しました。');
         }
     }
 

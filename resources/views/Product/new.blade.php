@@ -12,16 +12,9 @@
             {{ csrf_field() }}
             <tr>
                 <th>code: </th>
-                <td colspan="4">
+                <td colspan="5">
                     <input type="text" class="form-control" name="code" value="{{old('code')}}">
                     <span class="text-danger">{{  $errors->first('code')}}</span>
-                </td>
-                <td>
-                    <div class="form-group form-check">
-                        <input type="checkbox" name="use_flg" class="form-check-input" checked="checked" >
-                        <label class="form-check-label" for="exampleCheck1">使用する</label>
-                        <span class="text-danger">{{  $errors->first('use_flg')}}</span>
-                    </div>
                 </td>
             </tr>
             <tr>

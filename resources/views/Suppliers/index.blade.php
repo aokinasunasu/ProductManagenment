@@ -18,18 +18,20 @@
         <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
         <a href="{{ action('SuppliersController@new') }}" class="btn btn-primary btn-lg" >登録</a>
     </div>
-    <div class="justify-content-center">
-        <div class="table table-striped table-responsive">
+    <div class="">
+        <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr>
                     <th>ID</th>
                     <th>表示順</th>
                     <th>取引先名</th>
                     <th>取引先略名</th>
-                    <th>郵便番号</th>
-                    <th>電話番号</th>
-                    <th>住所</th>
                     <th>担当者名</th>
+                    <th>郵便番号</th>
+                    <th>電話番号1</th>
+                    <th>電話番号2</th>
+                    <th>住所1</th>
+                    <th>住所2</th>
                     <th>操作</th>
                 </tr>
                 @forelse ($itmes as $item )
@@ -38,23 +40,31 @@
                         {{ $item->id }}
                     </th>
                     <th>
-                        {{ $item->code }}
+                        {{ $item->display_order }}
                     </th>
                     <th>
-                        {{ $const['PRODUCT_CATEGORY'][$item->category] }}
+                        {{ $item->name }}
                     </th>
-                   <th>
-                        {{ $item->name }}/{{ $item->abbreviation }}
+                    <th>
+                        {{ $item->abbreviation }}
                     </th>
-                    <th class="text-right">
-                        {{ $const['UNIT'][$item->unit] }}
-
+                    <th>
+                        {{ $item->contact_name }}
                     </th>
-                    <th class="text-right">
-                        {{$item->unit_selling_price}} 円
+                    <th>
+                        {{ $item->post_code }}
                     </th>
-                    <th class="text-right">
-                        {{$item->unit_price}}円
+                    <th>
+                        {{ $item->tel1 }}
+                    </th>
+                    <th>
+                        {{ $item->tel2 }}
+                    </th>
+                    <th>
+                        {{ $item->street_address1 }}
+                    </th>
+                    <th>
+                        {{ $item->street_address2 }}
                     </th>
                     <th>
                         <a href="{{ action('SuppliersController@edit',[ 'id' => $item->id]) }}" class="btn btn-primary btn-lg" >編集</a>
@@ -62,7 +72,7 @@
                 </tr>
                 @empty
                     <tr align="center">
-                        <th colspan="6">商品がありません</th>
+                        <th colspan="11">商品がありません</th>
                     </tr>
                 @endforelse
             </table>

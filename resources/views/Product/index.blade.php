@@ -61,7 +61,7 @@
                 </tr>
                 @empty
                     <tr align="center">
-                        <th colspan="6">商品がありません</th>
+                        <th colspan="8">商品がありません</th>
                     </tr>
                 @endforelse
             </table>

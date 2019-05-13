@@ -19,7 +19,6 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->string('abbreviation')->nullable();
             $table->string('contact_name');
-            $table->integer('kbn');
             $table->string('post_code');
             $table->string('street_address1');
             $table->string('street_address2')->nullable();
@@ -28,7 +27,6 @@ class CreateSuppliersTable extends Migration
             $table->string('fax_number')->nullable();
             $table->string('e-mail')->nullable();
             $table->string('url')->nullable();
-            $table->string('use_flg');
             $table->timestamps();
         });
     }
