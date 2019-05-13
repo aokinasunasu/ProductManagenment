@@ -8,7 +8,6 @@ use App\Order;
 class OrdersController extends Controller
 {
     public function index(Request $request) {
-
         // TODO 検索フォーム ページネーション
         $const = config('const');
         $itmes = Order::all();
@@ -21,8 +20,9 @@ class OrdersController extends Controller
 
     public function new() {
         $const = config('const');
-        return view('Order.new',[
-            'const' => $const,
+
+        return response()->json([
+            'view' => view('Order.new')->render()
         ]);
     }
 

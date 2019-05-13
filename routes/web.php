@@ -44,7 +44,7 @@ Route::post('/suppliers/delete', 'SuppliersController@delete');
 // 一覧
 Route::get('/order', 'OrdersController@index');
 // 新規
-Route::get('/order/new', 'OrdersController@new');
+Route::get('/ajax/order/new', 'OrdersController@new');
 // 編集
 Route::get('/order/edit', 'OrdersController@edit');
 // 更新

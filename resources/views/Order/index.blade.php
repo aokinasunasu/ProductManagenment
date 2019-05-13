@@ -16,7 +16,7 @@
         <h2>注文一覧</h2>
         <div class="lcol text-right mb-3">
             <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
-            <a href="{{ action('ProductsController@new') }}" class="btn btn-primary btn-lg" >新規登録</a>
+            <button type="button" class="btn btn-primary order-new btn-lg">新規登録</button>
         </div>
         <div class="row justify-content-center">
             <div class="table table-striped table-hover">
@@ -65,20 +65,43 @@
         </div>
         <div class="lcol text-right mt-3" >
             <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
-            <a href="{{ action('ProductsController@new') }}" class="btn btn-primary btn-lg" >新規登録</a>
+            <button type="button" class="btn btn-primary order-new btn-lg">新規登録</button>
         </div>
+    </div>
+
+    <div id = 'component2'>
     </div>
 </div>
 
+
+</div>
 @endsection
 @section('script')
 
 <script>
 $(function(){
-    $('#btn').click(function(){
+    // 通信
+    $http = axios;
+    // csrfトークン設定
+    $http.defaults.headers.common = {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'X-Requested-With': 'XMLHttpRequest'
+    };
 
-        $('#modal-xl').modal('show');
+    $('.order-new').click(function(){
+        // 中の要素を削除
+        $('#component2').empty();
+        $http.get('/ajax/order/new')
+        .then(function(response){
+            // 成功したとき
+            response.data;
+            $('#component2').append(response.data['view']);
+            $('#modal-xl').modal('show');
+        }).catch(function(error){
+            alert(error.message);
+        });
     })
+
 });
 </script>
 @endsection
