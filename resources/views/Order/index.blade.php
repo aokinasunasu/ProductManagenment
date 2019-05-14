@@ -106,19 +106,29 @@ $(function(){
 
     jQuery('#component2').on('click', '#order-details-add', function (event) {
 
-        console.log($('#order-details-list').data('count'));
         $http.post('/ajax/order/details_new', {'order_details': order_details})
         .then(function(response){
             $('#order-details').empty();
             $('#order-details').append(response.data['view']);
             order_details = response.data['itmes'];
-            console.log(order_details);
         }).catch(function(error){
             alert(error.message);
         });
     });
 
     // 入力画面
+    jQuery('#component2').on('change', '.componet2-form', function (event) {
+        // id取得
+        $componet2_form_id = $(this).closest('tr').data('id');
+        // 入力フォーム名取得
+        $componet2_form_name = $(this).attr('name');
+        // 値 チェックボックス
+        $componet2_form_val = $(this).attr('type') == 'checkbox' ? $(this).prop('checked') ? true : false : $(this).val();
+        //TODO バリデーション
+
+        // 明細へ値代入
+        order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
+    });
 
 
 });
