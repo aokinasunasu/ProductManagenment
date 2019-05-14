@@ -47,9 +47,9 @@ Route::get('/order', 'OrdersController@index');
 Route::get('/ajax/order/new', 'OrdersController@new');
 // 新規明細
 Route::post('/ajax/order/details_new', 'OrdersController@details_new');
+// 更新
+Route::post('/ajax/order/update', 'OrdersController@update');
 // 編集
 Route::get('/order/edit', 'OrdersController@edit');
-// 更新
-Route::post('/order/update', 'OrdersController@update');
 // 削除
 Route::post('/order/delete', 'OrdersController@delete');

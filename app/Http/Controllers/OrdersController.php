@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use Carbon\Carbon;
 use App\Product;
+use App\Suppliers;
 
 class OrdersController extends Controller
 {
@@ -23,12 +24,13 @@ class OrdersController extends Controller
     public function new() {
         $const = config('const');
         $date = Carbon::now()->format('Y-m-d\TH:i');
-
+        $suppliers = Suppliers::all();
         return response()->json([
             'view' => view('Order.new',[
                 'const' => $const,
                 'date' => $date,
                 'itmes' => [],
+                'suppliers' => $suppliers,
             ])->render()
         ]);
     }
@@ -38,6 +40,7 @@ class OrdersController extends Controller
         $items = $request->order_details;
         // TODO 表示方法
         $products = Product::all();
+        \Log::info($products);
 
         $item = [
             'product_id' => '',
@@ -77,22 +80,9 @@ class OrdersController extends Controller
     }
 
     public function update(Request $request) {
-        // return view('Product.index');
-        $form = $request->all();
-        // バリデーション
-        $this->validate($request, Product::$rules, Product::$messages);
-
-        // id 存在:編集　
-        if ($form['id']) {
-            $product = Product::find($form['id']);
-            $product->fill($form)->save();
-            return redirect('/order')->with('success_message', 'データの更新に成功しました。');
-        } else {
-            $product = new Product;
-            unset($form['_token']);
-            $product->fill($form)->save();
-            return redirect('/order')->with('success_message', 'データの作成に成功しました。');
-        }
+        \Log::info($request);
+        \Log::info("hh");
+        return 0;
     }
 
     // 物理削除なし

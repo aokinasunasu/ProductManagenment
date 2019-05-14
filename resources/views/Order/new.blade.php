@@ -34,8 +34,11 @@
             </div>
             <label class="col-md-1 col-sm-12 col-form-label">取引先:*</label>
             <div class="col-sm-3">
-                <input id = "order-supplier" type="text" class="form-control" name = "supplier" placeholder="" value="{{ old('supplier') }}">
-                <span class="text-danger">{{$errors->first('supplier')}}</span>
+                <select id = "order-supplier" class="form-control" name = 'supplier'>
+                    @foreach ( $suppliers as $supplier)
+                        <option value={{$supplier->id}} >{{$supplier->name}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-2">
                 <button type="button" class="btn btn-primary" id = "order-details-add">商品追加</button>

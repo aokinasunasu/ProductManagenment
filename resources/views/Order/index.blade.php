@@ -117,7 +117,7 @@ $(function(){
     });
 
     // 入力画面
-    jQuery('#component2').on('change', '.componet2-form', function (event) {
+    jQuery('#component2').on('change', '.componet2-form-order-details', function (event) {
         // id取得
         $componet2_form_id = $(this).closest('tr').data('id');
         // 入力フォーム名取得
@@ -126,23 +126,56 @@ $(function(){
         $componet2_form_val = $(this).attr('type') == 'checkbox' ? $(this).prop('checked') ? true : false : $(this).val();
         //TODO バリデーション
 
-        // 明細へ値代入
-        order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
+        // 明細へ値
+        switch ($componet2_form_name) {
+            case "product_id":
+                $price = $(this).closest('tr').find('.componet2-form-order-details-product option:selected').data('price');
+                $(this).closest('tr').find('.componet2-form-order-details-price').val($price);
+                order_details[$componet2_form_id]['price'] = $price;
+                order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
+            break;
+            default :
+                order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
+            break;
+        }
     });
 
     // データの更新
     jQuery('#component2').on('click', '.save-btn', function (event) {
-        console.log('hy');
-        order = [];
-        order['id'] = $('#order-id').val();
-        order['type'] = $('#order-type').val();
-        order['day'] = $('#order-date').val();
-        order['name'] = $('#order-name').val();
-        order['supplier_id'] = $('#order-supplier').val();
-        console.log(order);
-        // 注文情報取得
 
+        order = {
+            id: $('#order-id').val(),
+            type: $('#order-type').val(),
+            day: $('#order-date').val(),
+            name: $('#order-name').val(),
+            supplier_id: $('#order-supplier').val(),
+        };
 
+        // TODO バリデーション
+        error = order_validate(order);;
+
+        if (!error) {
+            $http.post('/ajax/order/update', {'order': order , 'order_details': order_details})
+            .then(function(response){
+
+            }).catch(function(error){
+
+            });
+        }
+
+        function order_validate(target) {
+            error = false;
+            Object.keys(target).forEach(function(key) {
+                switch (key) {
+                    case "name":
+                        if (target[key] == null || target[key] == "") {
+                            error = true;
+                        }
+                    break
+                }
+            })
+            return error;
+        }
     });
 
 });

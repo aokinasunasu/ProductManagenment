@@ -14,7 +14,6 @@ class Suppliers extends Model
         'post_code' => 'required',
         'street_address1' => 'required',
         'tel1' => 'required',
-        'use_flg' => 'required',
     );
 
     public static $messages = array(
