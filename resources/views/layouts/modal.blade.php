@@ -8,7 +8,7 @@
             <div class="modal-body">@yield('content')</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">閉じる</button>
-                <button type="button" class="btn btn-primary">変更を保存</button>
+                <button type="button" class="btn btn-primary save-btn">保存</button>
             </div>
         </div>
     </div>

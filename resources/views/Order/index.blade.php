@@ -130,6 +130,20 @@ $(function(){
         order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
     });
 
+    // データの更新
+    jQuery('#component2').on('click', '.save-btn', function (event) {
+        console.log('hy');
+        order = [];
+        order['id'] = $('#order-id').val();
+        order['type'] = $('#order-type').val();
+        order['day'] = $('#order-date').val();
+        order['name'] = $('#order-name').val();
+        order['supplier_id'] = $('#order-supplier').val();
+        console.log(order);
+        // 注文情報取得
+
+
+    });
 
 });
 </script>
