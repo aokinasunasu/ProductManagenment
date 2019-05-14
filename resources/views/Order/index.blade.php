@@ -80,6 +80,7 @@
 
 <script>
 $(function(){
+    order_details = [];
     // 通信
     $http = axios;
     // csrfトークン設定
@@ -96,11 +97,29 @@ $(function(){
             // 成功したとき
             response.data;
             $('#component2').append(response.data['view']);
+            order_details = response.data['items']
             $('#modal-xl').modal('show');
         }).catch(function(error){
             alert(error.message);
         });
-    })
+    });
+
+    jQuery('#component2').on('click', '#order-details-add', function (event) {
+
+        console.log($('#order-details-list').data('count'));
+        $http.post('/ajax/order/details_new', {'order_details': order_details})
+        .then(function(response){
+            $('#order-details').empty();
+            $('#order-details').append(response.data['view']);
+            order_details = response.data['itmes'];
+            console.log(order_details);
+        }).catch(function(error){
+            alert(error.message);
+        });
+    });
+
+    // 入力画面
+
 
 });
 </script>

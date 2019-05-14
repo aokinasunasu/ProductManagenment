@@ -9,52 +9,41 @@
         <div class="form-group row">
             <label class="col-md-1 col-sm-12 col-form-label">注文No:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name = "name" placeholder="" value="{{ old('name') }}">
-                <span class="text-danger">{{$errors->first('name')}}</span>
+                <input type="text" class="form-control" name = "id" placeholder="" value="" disabled>
             </div>
             <label class="col-md-1 col-sm-12 col-form-label">タイプ:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name = "name" placeholder="" value="{{ old('name') }}">
-                <span class="text-danger">{{$errors->first('name')}}</span>
+                <select class="form-control" name = 'type'>
+                    @foreach ( $const['ORDER_TYPE'] as $key => $value)
+                        <option value={{$key}} @if(old('type')==$key) selected @endif>{{$value}}</option>
+                    @endforeach
+                </select>
             </div>
-            <label class="col-md-1 col-sm-12 col-form-label">日付:</label>
+
+            <label class="col-md-1 col-sm-12 col-form-label">日付:*</label>
             <div class="col-sm-3">
                 {{-- TODO DatePicker --}}
-                <input type="datetime-local">
+                <input type="datetime-local" value = '{{ $date }}'>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-1 col-sm-12 col-form-label">注文名:</label>
+            <label class="col-md-1 col-sm-12 col-form-label">注文名:*</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" name = "name" placeholder="" value="{{ old('name') }}">
                 <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
-            <label class="col-md-1 col-sm-12 col-form-label">登録者:</label>
+            <label class="col-md-1 col-sm-12 col-form-label">登録者:*</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" name = "name" placeholder="" value="{{ old('name') }}">
                 <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary ">商品追加</button>
+                <button type="button" class="btn btn-primary" id = "order-details-add">商品追加</button>
             </div>
         </div>
     </div>
     <div id = "order-details">
-        <div class="row justify-content-center">
-            <div class="table table-striped table-hover">
-                <table class="table table-striped table-bordered table-hover table-condensed">
-                    <tr>
-                        <th>明細No</th>
-                        <th>商品</th>
-                        <th>価格</th>
-                        <th>数</th>
-                    </tr>
-                    <tr align="center">
-                        <th colspan="8">注文がありません</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        @include('Order.details_list_table')
     </div>
 </div>
 @endsection

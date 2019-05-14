@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use Carbon\Carbon;
+use App\Product;
 
 class OrdersController extends Controller
 {
@@ -20,9 +22,38 @@ class OrdersController extends Controller
 
     public function new() {
         $const = config('const');
+        $date = Carbon::now()->format('Y-m-d\TH:i');
 
         return response()->json([
-            'view' => view('Order.new')->render()
+            'view' => view('Order.new',[
+                'const' => $const,
+                'date' => $date,
+                'itmes' => [],
+            ])->render()
+        ]);
+    }
+
+    public function details_new(Request $request) {
+
+        $items = $request->order_details;
+        // TODO 表示方法
+        $products = Product::all();
+
+        $item = [
+            'product_id' => '',
+            'price' => 0,
+            'num' => 0,
+            'delete_flg' => false,
+        ];
+
+        $items[] = $item;
+
+        return response()->json([
+            'view' => view('Order.details_list_table',[
+                'itmes' => $items,
+                'products' => $products,
+            ])->render(),
+            'itmes' => $items,
         ]);
     }
 
