@@ -23,36 +23,24 @@
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <tr>
                         <th>ID</th>
-                        <th>type</th>
-                        <th>日付</th>
+                        <th>タイプ</th>
+                        <th>日時</th>
                         <th>注文名</th>
-                        <th>操作</th>
                     </tr>
                     @forelse ($itmes as $item )
-                    <tr>
+                    <tr data-id = '{{ $item->id }}' class = 'order_edit'>
                         <th>
                             {{ $item->id }}
                         </th>
                         <th>
-                            {{ $item->code }}
+                            {{ $const['ORDER_TYPE'][$item->type] }}
                         </th>
                         <th>
-                            {{ $const['PRODUCT_CATEGORY'][$item->category] }}
-                        </th>
-                    <th>
-                            {{ $item->name }}/{{ $item->abbreviation }}
-                        </th>
-                        <th class="text-right">
-                            {{ $const['UNIT'][$item->unit] }}
-                        </th>
-                        <th class="text-right">
-                            {{$item->unit_selling_price}} 円
-                        </th>
-                        <th class="text-right">
-                            {{$item->unit_price}}円
+                            {{-- Todo 日付 --}}
+                            {{ $item->day }}
                         </th>
                         <th>
-                            <a href="{{ action('ProductsController@edit',[ 'id' => $item->id]) }}" class="btn btn-primary btn-lg" >編集</a>
+                            {{ $item->name }}
                         </th>
                     </tr>
                     @empty
@@ -89,6 +77,7 @@ $(function(){
         'X-Requested-With': 'XMLHttpRequest'
     };
 
+    // 新規
     $('.order-new').click(function(){
         // 中の要素を削除
         $('#component2').empty();
@@ -97,12 +86,32 @@ $(function(){
             // 成功したとき
             response.data;
             $('#component2').append(response.data['view']);
-            order_details = response.data['items']
+            order_details = response.data['itmes']
             $('#modal-xl').modal('show');
         }).catch(function(error){
             alert(error.message);
         });
     });
+
+    // 編集
+    $('.order_edit').click(function(){
+        // console.log($(this).data('id'));
+        $order_id =$(this).data('id');
+        // 中の要素を削除
+        $('#component2').empty();
+        $http.post('/ajax/order/edit',{'id' : $order_id})
+        .then(function(response){
+            // 成功したとき
+            response.data;
+            $('#component2').append(response.data['view']);
+            order_details = response.data['itmes']
+            console.log(response);
+            $('#modal-xl').modal('show');
+        }).catch(function(error){
+            // alert(error.message);
+        });
+    });
+
 
     jQuery('#component2').on('click', '#order-details-add', function (event) {
 
@@ -157,9 +166,9 @@ $(function(){
         if (!error) {
             $http.post('/ajax/order/update', {'order': order , 'order_details': order_details})
             .then(function(response){
-
+                console.log('heyyy');
             }).catch(function(error){
-
+                console.log('error');
             });
         }
 
@@ -169,7 +178,7 @@ $(function(){
                 switch (key) {
                     case "name":
                         if (target[key] == null || target[key] == "") {
-                            error = true;
+                            // error = true;
                         }
                     break
                 }

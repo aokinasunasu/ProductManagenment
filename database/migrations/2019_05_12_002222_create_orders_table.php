@@ -18,7 +18,6 @@ class CreateOrdersTable extends Migration
             $table->integer('type');
             $table->string('name');
             $table->integer('supplier_id');
-            $table->integer('finish_flg');
             $table->dateTime('day');
             $table->timestamps();
         });

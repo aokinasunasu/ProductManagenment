@@ -45,11 +45,11 @@ Route::post('/suppliers/delete', 'SuppliersController@delete');
 Route::get('/order', 'OrdersController@index');
 // 新規
 Route::get('/ajax/order/new', 'OrdersController@new');
+// 編集
+Route::post('/ajax/order/edit', 'OrdersController@edit');
 // 新規明細
 Route::post('/ajax/order/details_new', 'OrdersController@details_new');
 // 更新
 Route::post('/ajax/order/update', 'OrdersController@update');
-// 編集
-Route::get('/order/edit', 'OrdersController@edit');
 // 削除
 Route::post('/order/delete', 'OrdersController@delete');
