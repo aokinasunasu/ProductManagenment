@@ -108,8 +108,16 @@ class OrdersController extends Controller
             \log::info($e);
             DB::rollback();
         }
+        // 注文の一覧再取得
+        $const = config('const');
+        $itmes = Order::all();
 
-        return  response('sucess', 200);
+        return response()->json([
+            'view' => view('Order.order_table',[
+                'itmes' => $itmes,
+                'const' => $const,
+            ])->render(),
+        ]);
     }
 
     // 物理削除なし

@@ -90,7 +90,7 @@
                     <span class="text-danger">{{  $errors->first('url')}}</span>
                 </td>
             </tr>
-            <input type="hidden" name="id" value="">
+                <input type="hidden" name="id" value="{{ $form->id }}">
             <tr>
                 <th colspan="6">
                     <input type="submit" value="登録" class="btn btn-success btn-lg btn-block">

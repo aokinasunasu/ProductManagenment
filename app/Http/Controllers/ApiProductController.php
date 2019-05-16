@@ -40,6 +40,12 @@ class ApiProductController extends Controller
         return $product;
     }
 
+    /**
+     * codeから商品取得
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function code_show(Request $request)
     {
         $code = $request->code;

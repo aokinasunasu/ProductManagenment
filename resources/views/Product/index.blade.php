@@ -24,13 +24,12 @@
                 <tr>
                     <th>ID</th>
                     <th>code</th>
-                    <th>カテゴリ</th>
+                    <th style="width: 80px;">ｶﾃｺﾞﾘ</th>
                     <th>名前/略語</th>
-                    <th>単位</th>
-                    <th>販売単価</th>
-                    <th>原単価</th>
-                    <th>操作</th>
-                </tr>
+                    <th style="width: 60px;">単位</th>
+                    <th style="width: 90px;">販売単価</th>
+                    <th style="width: 80px;">原単価</th>
+                    <th style="width: 95px;">操作</th></tr>
                 @forelse ($itmes as $item )
                 <tr>
                     <th>

@@ -25,13 +25,11 @@
                     <th>ID</th>
                     <th>表示順</th>
                     <th>取引先名</th>
-                    <th>取引先略名</th>
                     <th>担当者名</th>
                     <th>郵便番号</th>
                     <th>電話番号1</th>
                     <th>電話番号2</th>
-                    <th>住所1</th>
-                    <th>住所2</th>
+                    <th>住所</th>
                     <th>操作</th>
                 </tr>
                 @forelse ($itmes as $item )
@@ -44,9 +42,6 @@
                     </th>
                     <th>
                         {{ $item->name }}
-                    </th>
-                    <th>
-                        {{ $item->abbreviation }}
                     </th>
                     <th>
                         {{ $item->contact_name }}
@@ -62,8 +57,6 @@
                     </th>
                     <th>
                         {{ $item->street_address1 }}
-                    </th>
-                    <th>
                         {{ $item->street_address2 }}
                     </th>
                     <th>

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <table class="table table-bordered table-condensed" id = "order-details-list" data-count = '0'>
         <tr>
-            <th>削除</th>
+            <th style="width: 60px;">削除</th>
             <th>商品</th>
             <th>価格</th>
             <th>数</th>

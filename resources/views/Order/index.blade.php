@@ -13,50 +13,8 @@
         </div>
     @endif
     <div id = 'component1'>
-        <h2>注文一覧</h2>
-        <div class="lcol text-right mb-3">
-            <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
-            <button type="button" class="btn btn-primary order-new btn-lg">新規登録</button>
-        </div>
-        <div class="row justify-content-center">
-            <div class="table table-striped table-hover">
-                <table class="table table-striped table-bordered table-hover table-condensed">
-                    <tr>
-                        <th>ID</th>
-                        <th>タイプ</th>
-                        <th>日時</th>
-                        <th>注文名</th>
-                    </tr>
-                    @forelse ($itmes as $item )
-                    <tr data-id = '{{ $item->id }}' class = 'order_edit'>
-                        <th>
-                            {{ $item->id }}
-                        </th>
-                        <th>
-                            {{ $const['ORDER_TYPE'][$item->type] }}
-                        </th>
-                        <th>
-                            {{-- Todo 日付 --}}
-                            {{ $item->day }}
-                        </th>
-                        <th>
-                            {{ $item->name }}
-                        </th>
-                    </tr>
-                    @empty
-                        <tr align="center">
-                            <th colspan="8">注文がありません</th>
-                        </tr>
-                    @endforelse
-                </table>
-            </div>
-        </div>
-        <div class="lcol text-right mt-3" >
-            <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
-            <button type="button" class="btn btn-primary order-new btn-lg">新規登録</button>
-        </div>
+        @include('Order.order_table')
     </div>
-
     <div id = 'component2'>
     </div>
 </div>
@@ -78,7 +36,7 @@ $(function(){
     };
 
     // 新規
-    $('.order-new').click(function(){
+    jQuery('#component1').on('click', '.order-new', function (event) {
         // 中の要素を削除
         $('#component2').empty();
         $http.get('/ajax/order/new')
@@ -94,7 +52,7 @@ $(function(){
     });
 
     // 編集
-    $('.order_edit').click(function(){
+    jQuery('#component1').on('click', '.order_edit', function (event) {
         // console.log($(this).data('id'));
         $order_id =$(this).data('id');
         // 中の要素を削除
@@ -111,7 +69,6 @@ $(function(){
             // alert(error.message);
         });
     });
-
 
     jQuery('#component2').on('click', '#order-details-add', function (event) {
 
@@ -166,9 +123,13 @@ $(function(){
         if (!error) {
             $http.post('/ajax/order/update', {'order': order , 'order_details': order_details})
             .then(function(response){
-                console.log('heyyy');
+                $('#modal-xl').modal('hide');
+                bootbox.alert("注文が完了しました。");
+                // テーブル再取得
+                $('#component1').empty();
+                $('#component1').append(response.data['view']);
             }).catch(function(error){
-                console.log('error');
+                bootbox.alert(error);
             });
         }
 
@@ -186,7 +147,6 @@ $(function(){
             return error;
         }
     });
-
 });
 </script>
 @endsection
