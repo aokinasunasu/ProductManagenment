@@ -8,7 +8,6 @@
             @forelse ($itmes as $item )
                 <tr data-id = '{{ $loop->index }}' data-new = '{{ isset($item['id']) ?  0 : 1 }}'>
                     <th>
-                        {{-- TODO 大きさ変更 --}}
                         <div class="form-check mx-auto">
                             <input class="form-check-input componet2-form-order-details" type="checkbox" name = 'delete_flg' value="" @if(isset($item['delete_flg']) && $item['delete_flg']) checked="checked" @endif>
                         </div>

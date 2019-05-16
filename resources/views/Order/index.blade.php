@@ -118,7 +118,7 @@ $(function(){
         };
 
         // TODO バリデーション
-        error = order_validate(order);;
+        error = validate(order,order_details);;
 
         if (!error) {
             $http.post('/ajax/order/update', {'order': order , 'order_details': order_details})
@@ -133,17 +133,40 @@ $(function(){
             });
         }
 
-        function order_validate(target) {
+        // 注文情報のバリデーション
+        function validate(order,details) {
             error = false;
-            Object.keys(target).forEach(function(key) {
+            // 注文情報
+            Object.keys(order).forEach(function(key) {
                 switch (key) {
                     case "name":
-                        if (target[key] == null || target[key] == "") {
-                            // error = true;
+                        if (order[key] == null || order[key] == "") {
+                            $('#order-name').next().text('必須入力です。');
+                            error = true;
                         }
                     break
                 }
             })
+
+            details_error = false;
+
+            // 明細情報がありません
+            if (details === undefined) {
+                bootbox.alert("ERROR:明細情報がありません");
+                error = true;
+            } else {
+                Object.keys(details).forEach(function(key) {
+                    if ((details[key]["product_id"] == null || details[key]["product_id"] == "" ) && details[key]["product_id"] == false) {
+                        details_error = true;
+                        error = true;
+                    }
+                });
+            }
+
+            if (details_error) {
+                bootbox.alert("ERROR:商品が選択されていない明細情報が存在します。");
+            }
+
             return error;
         }
     });
