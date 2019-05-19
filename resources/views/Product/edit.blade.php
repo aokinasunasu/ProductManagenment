@@ -7,9 +7,16 @@
     <div class="lcol text-right mb-3" style="padding-bottom: 10px;">
         <a href="{{ action('ProductsController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
     </div>
+    {{-- <script src="{{ asset('vue.jpeg') }}" defer></script> --}}
     <form action="{{ action('ProductsController@update') }}" method="POST" class='form-horizontal'>
         <table class="table table-bordered table-condensed">
             {{ csrf_field() }}
+            <tr>
+                <th>商品画像: </th>
+                <td colspan="5">
+                    <img src="/storage/{{$form->image_url}}" width="500" height="400">
+                </td>
+            </tr>
             <tr>
                 <th>code: </th>
                 <td colspan="5">
@@ -59,6 +66,15 @@
                 <td>
                     <input type="number" class="form-control" name="unit_price" value="{{ old('unit_price') == null ? $form->unit_price : old('unit_price') }}">
                     <span class="text-danger">{{  $errors->first('unit_price')}}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>画像</th>
+                <td colspan="5">
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="image_url">
+                    </div>
+                    <span class="text-danger">{{  $errors->first('image_url')}}</span>
                 </td>
             </tr>
             <input type="hidden" name="id" value="{{$form->id}}">

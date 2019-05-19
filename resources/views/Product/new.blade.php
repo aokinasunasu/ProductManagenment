@@ -7,7 +7,7 @@
     <div class="lcol text-right mb-3" style="padding-bottom: 10px;">
         <a href="{{ action('ProductsController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
     </div>
-    <form action="{{ action('ProductsController@update') }}" method="POST" class='form-horizontal'>
+    <form action="{{ action('ProductsController@update') }}" method="POST" class='form-horizontal' enctype="multipart/form-data">
         <table class="table table-bordered table-condensed">
             {{ csrf_field() }}
             <tr>
@@ -59,6 +59,15 @@
                 <td>
                     <input type="number" class="form-control" name="unit_price" value="{{old('unit_price')}}">
                     <span class="text-danger">{{  $errors->first('unit_price')}}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>画像</th>
+                <td colspan="5">
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="image_url">
+                    </div>
+                    <span class="text-danger">{{  $errors->first('image_url')}}</span>
                 </td>
             </tr>
             <input type="hidden" name="id" value="">

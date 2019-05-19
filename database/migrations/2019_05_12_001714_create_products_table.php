@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('unit');
             $table->integer('unit_selling_price')->default(0);
             $table->integer('unit_price')->default(0);
-            $table->string('picture')->nullable();
+            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
