@@ -14,7 +14,11 @@
             <tr>
                 <th>商品画像: </th>
                 <td colspan="5">
-                    <img src="/storage/{{$form->image_url}}" width="500" height="400">
+                    @if ($form->image_url == '')
+                        <img src="/storage/none.jpeg" width="500" height="300">
+                    @else
+                        <img src="/storage/{{$form->image_url}}" width="500" height="300">
+                    @endif
                 </td>
             </tr>
             <tr>
