@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class DefinitionsController extends Controller
 {
     public function index() {
-        return view('Home.index');
+        return view('Definition.index');
     }
 }

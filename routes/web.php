@@ -56,4 +56,4 @@ Route::post('/order/delete', 'OrdersController@delete');
 
 // 定義
 // 一覧
-Route::get('/Definitons', 'DefinitonsController@index');
+Route::get('/Definitons', 'DefinitionsController@index');
