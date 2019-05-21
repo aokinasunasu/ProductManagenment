@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDefinitonsItemsTable extends Migration
+class CreateDefinitionItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDefinitonsItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('definitons_items', function (Blueprint $table) {
+        Schema::create('definition_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('display_order');
-            $table->string('definitons_name');
+            $table->string('definition_name');
             $table->string('value');
             $table->integer('enabled_flg');
             $table->integer('system_kbn');
@@ -31,6 +31,6 @@ class CreateDefinitonsItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('definitons_items');
+        Schema::dropIfExists('definition_items');
     }
 }

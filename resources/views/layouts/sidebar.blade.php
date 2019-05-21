@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link " href="{{ action('DefinitionsController@index') }}">
+                    <i class="fa fa-cog  fa-2x" aria-hidden="true"></i>
+                    項目定義 <span class="sr-only"></span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link " href="#">
                     <i class="fa fa-cog  fa-2x" aria-hidden="true"></i>
                     設定 <span class="sr-only"></span>

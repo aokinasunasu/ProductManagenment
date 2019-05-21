@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDefinitonsTable extends Migration
+class CreateDefinitionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDefinitonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('definitons', function (Blueprint $table) {
+        Schema::create('definitions', function (Blueprint $table) {
             $table->string('name');
             $table->string('displey_name');
             $table->string('defult_name');

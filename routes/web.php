@@ -53,3 +53,7 @@ Route::post('/ajax/order/items_new', 'OrdersController@items_new');
 Route::post('/ajax/order/update', 'OrdersController@update');
 // 削除
 Route::post('/order/delete', 'OrdersController@delete');
+
+// 定義
+// 一覧
+Route::get('/Definitons', 'DefinitonsController@index');
