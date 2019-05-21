@@ -52,13 +52,13 @@
                 </td>
                 <th>販売単価: </th>
                 <td>
-                    <input type="number" class="form-control" name="unit_selling_price" value="{{old('unit_selling_price')}}">
-                    <span class="text-danger">{{  $errors->first('unit_selling_price')}}</span>
+                    <input type="number" class="form-control" name="selling_price" value="{{old('selling_price')}}">
+                    <span class="text-danger">{{  $errors->first('selling_price')}}</span>
                 </td>
                 <th>原単価: </th>
                 <td>
-                    <input type="number" class="form-control" name="unit_price" value="{{old('unit_price')}}">
-                    <span class="text-danger">{{  $errors->first('unit_price')}}</span>
+                    <input type="number" class="form-control" name="purchase_price" value="{{old('purchase_price')}}">
+                    <span class="text-danger">{{  $errors->first('purchase_price')}}</span>
                 </td>
             </tr>
             <tr>

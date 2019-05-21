@@ -18,7 +18,7 @@ class CreatePackingsTable extends Migration
             $table->integer('unit');
             $table->integer('num');
             $table->integer('selling_price');
-            $table->integer('unit_price');
+            $table->integer('purchase_price');
             $table->string('picture');
             $table->timestamps();
         });

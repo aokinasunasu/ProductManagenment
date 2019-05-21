@@ -12,8 +12,8 @@ class Product extends Model
         'abbreviation' => 'required',
         'category' => 'required',
         'unit' => 'required|integer',
-        'unit_selling_price' => 'required|integer',
-        'unit_price' => 'required|integer',
+        'selling_price' => 'required|integer',
+        'purchase_price' => 'required|integer',
         'image_url' => 'image|mimes:jpg,jpeg,png|max:2000'
     );
 

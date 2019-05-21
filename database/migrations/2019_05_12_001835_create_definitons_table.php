@@ -14,10 +14,11 @@ class CreateDefinitonsTable extends Migration
     public function up()
     {
         Schema::create('definitons', function (Blueprint $table) {
-            $table->string('item');
             $table->string('name');
-            $table->string('initial_name');
-            $table->integer('kbn');
+            $table->string('displey_name');
+            $table->string('defult_name');
+            $table->integer('type');
+            $table->integer('system_kbn');
             $table->timestamps();
         });
     }

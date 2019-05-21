@@ -20,8 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('abbreviation');
             $table->integer('category');
             $table->integer('unit');
-            $table->integer('unit_selling_price')->default(0);
-            $table->integer('unit_price')->default(0);
+            $table->integer('selling_price')->default(0);
+            $table->integer('purchase_price')->default(0);
             $table->string('image_url')->nullable();
             $table->timestamps();
         });

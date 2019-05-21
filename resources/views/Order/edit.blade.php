@@ -41,12 +41,12 @@
                 </select>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary" id = "order-details-add">商品追加</button>
+                <button type="button" class="btn btn-primary" id = "order-items-add">商品追加</button>
             </div>
         </div>
     </div>
-    <div id = "order-details">
-        @include('Order.details_list_table')
+    <div id = "order-items">
+        @include('Order.items_list_table')
     </div>
 </div>
 @endsection

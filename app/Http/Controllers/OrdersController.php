@@ -8,7 +8,7 @@ use App\Order;
 use Carbon\Carbon;
 use App\Product;
 use App\Suppliers;
-use App\OrderDetails;
+use App\OrderItem;
 
 class OrdersController extends Controller
 {
@@ -39,7 +39,7 @@ class OrdersController extends Controller
     public function edit(Request $request) {
         $id = $request['id'];
         $order = Order::find($id);
-        $itmes = $order->getDetails;
+        $itmes = $order->getItems;
         $const = config('const');
         $date = Carbon::now()->format('Y-m-d\TH:i');
         $suppliers = Suppliers::all();
@@ -58,12 +58,11 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function details_new(Request $request) {
+    public function items_new(Request $request) {
 
-        $itmes = $request->order_details;
+        $itmes = $request->order_items;
         // TODO 表示方法
         $products = Product::all();
-
         $item = [
             'product_id' => '',
             'price' => 0,
@@ -74,7 +73,7 @@ class OrdersController extends Controller
         $itmes[] = $item;
 
         return response()->json([
-            'view' => view('Order.details_list_table',[
+            'view' => view('Order.items_list_table',[
                 'itmes' => $itmes,
                 'products' => $products,
             ])->render(),
@@ -85,8 +84,9 @@ class OrdersController extends Controller
     public function update(Request $request) {
 
         $order_form = $request->order;
-        $details_form = $request->order_details;
+        $items_form = $request->order_items;
 
+        \Log::info($items_form);
 
         DB::beginTransaction();
         try {
@@ -101,8 +101,8 @@ class OrdersController extends Controller
             }
 
             // 明細情報の作成
-            $order_details = new OrderDetails;
-            $order_details->create($order->id, $details_form);
+            $order_items = new OrderItem;
+            $order_items->create($order->id, $items_form);
             DB::commit();
         } catch (\Exception $e) {
             \log::info($e);

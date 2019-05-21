@@ -49,10 +49,10 @@
 
                     </th>
                     <th class="text-right">
-                        {{$item->unit_selling_price}} 円
+                        {{$item->selling_price}} 円
                     </th>
                     <th class="text-right">
-                        {{$item->unit_price}}円
+                        {{$item->purchase_price}}円
                     </th>
                     <th>
                         <a href="{{ action('ProductsController@edit',[ 'id' => $item->id]) }}" class="btn btn-primary btn-lg" >編集</a>

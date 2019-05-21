@@ -21,7 +21,7 @@
 
 <script>
 $(function(){
-    order_details = [];
+    order_items = [];
     // 通信
     $http = axios;
     // csrfトークン設定
@@ -39,7 +39,7 @@ $(function(){
             // 成功したとき
             response.data;
             $('#component2').append(response.data['view']);
-            order_details = response.data['itmes']
+            order_items = response.data['itmes']
             $('#modal-xl').modal('show');
         }).catch(function(error){
             alert(error.message);
@@ -57,7 +57,7 @@ $(function(){
             // 成功したとき
             response.data;
             $('#component2').append(response.data['view']);
-            order_details = response.data['itmes']
+            order_items = response.data['itmes']
             console.log(response);
             $('#modal-xl').modal('show');
         }).catch(function(error){
@@ -65,20 +65,20 @@ $(function(){
         });
     });
 
-    jQuery('#component2').on('click', '#order-details-add', function (event) {
+    jQuery('#component2').on('click', '#order-items-add', function (event) {
 
-        $http.post('/ajax/order/details_new', {'order_details': order_details})
+        $http.post('/ajax/order/items_new', {'order_items': order_items})
         .then(function(response){
-            $('#order-details').empty();
-            $('#order-details').append(response.data['view']);
-            order_details = response.data['itmes'];
+            $('#order-items').empty();
+            $('#order-items').append(response.data['view']);
+            order_items = response.data['itmes'];
         }).catch(function(error){
             alert(error.message);
         });
     });
 
     // 入力画面
-    jQuery('#component2').on('change', '.componet2-form-order-details', function (event) {
+    jQuery('#component2').on('change', '.componet2-form-order-items', function (event) {
         // id取得
         $componet2_form_id = $(this).closest('tr').data('id');
         // 入力フォーム名取得
@@ -90,13 +90,13 @@ $(function(){
         // 明細へ値
         switch ($componet2_form_name) {
             case "product_id":
-                $price = $(this).closest('tr').find('.componet2-form-order-details-product option:selected').data('price');
-                $(this).closest('tr').find('.componet2-form-order-details-price').val($price);
-                order_details[$componet2_form_id]['price'] = $price;
-                order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
+                $price = $(this).closest('tr').find('.componet2-form-order-items-product option:selected').data('price');
+                $(this).closest('tr').find('.componet2-form-order-items-price').val($price);
+                order_items[$componet2_form_id]['price'] = $price;
+                order_items[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
             break;
             default :
-                order_details[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
+                order_items[$componet2_form_id][$componet2_form_name] = $componet2_form_val;
             break;
         }
     });
@@ -113,10 +113,10 @@ $(function(){
         };
 
         // TODO バリデーション
-        error = validate(order,order_details);;
+        error = validate(order,order_items);;
 
         if (!error) {
-            $http.post('/ajax/order/update', {'order': order , 'order_details': order_details})
+            $http.post('/ajax/order/update', {'order': order , 'order_items': order_items})
             .then(function(response){
                 $('#modal-xl').modal('hide');
                 bootbox.alert("注文が完了しました。");
@@ -129,7 +129,7 @@ $(function(){
         }
 
         // 注文情報のバリデーション
-        function validate(order,details) {
+        function validate(order,items) {
             error = false;
             // 注文情報
             Object.keys(order).forEach(function(key) {
@@ -143,22 +143,22 @@ $(function(){
                 }
             })
 
-            details_error = false;
+            items_error = false;
 
             // 明細情報がありません
-            if (details === undefined) {
+            if (items === undefined) {
                 bootbox.alert("ERROR:明細情報がありません");
                 error = true;
             } else {
-                Object.keys(details).forEach(function(key) {
-                    if ((details[key]["product_id"] == null || details[key]["product_id"] == "" ) && details[key]["product_id"] == false) {
-                        details_error = true;
+                Object.keys(items).forEach(function(key) {
+                    if ((items[key]["product_id"] == null || items[key]["product_id"] == "" ) && items[key]["product_id"] == false) {
+                        items_error = true;
                         error = true;
                     }
                 });
             }
 
-            if (details_error) {
+            if (items_error) {
                 bootbox.alert("ERROR:商品が選択されていない明細情報が存在します。");
             }
 

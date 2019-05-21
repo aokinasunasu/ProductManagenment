@@ -5,7 +5,7 @@ namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderDetails extends Model
+class OrderItem extends Model
 {
     //
     protected $guarded = ['id'];
@@ -16,7 +16,7 @@ class OrderDetails extends Model
         $items = [];
 
         // データ削除
-        DB::table('order_details')->where('order_id', '=', $order_id)->delete();
+        DB::table('order_items')->where('order_id', '=', $order_id)->delete();
         foreach ($list as $item) {
             $save_flg = true;
             $item['order_id'] = $order_id;
@@ -40,7 +40,7 @@ class OrderDetails extends Model
         }
 
         // データ登録
-        DB::table('order_details')-> insert($items);
+        DB::table('order_items')-> insert($items);
 
     }
 

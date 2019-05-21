@@ -9,7 +9,7 @@ class Order extends Model
     //
     protected $guarded = ['id'];
 
-    public function getDetails() {
-        return $this->hasMany('App\OrderDetails');
+    public function getItems() {
+        return $this->hasMany('App\OrderItem');
     }
 }
