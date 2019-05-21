@@ -64,6 +64,33 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">ログイン履歴</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>操作日時</th>
+                            <th>ページ</th>
+                            <th>内容</th>
+                            <th>タイプ</th>
+                            <th>更新ユーザ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2019/03/05</td>
+                                <td>商品</td>
+                                <td>値変更</td>
+                                <td>編集</td>
+                                <td>青木</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     {{-- メッセージ --}}
     @if(session()->has('alert_message'))
         <div class="alert alert-danger">
@@ -17,10 +16,6 @@
     </div>
     <div id = 'component2'>
     </div>
-</div>
-
-
-</div>
 @endsection
 @section('script')
 

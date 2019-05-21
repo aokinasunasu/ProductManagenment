@@ -1,7 +1,9 @@
-<h2>注文一覧</h2>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">注文一覧</h1>
+</div>
 <div class="lcol text-right mb-3">
-    <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
-    <button type="button" class="btn btn-primary order-new btn-lg">新規登録</button>
+    {{-- <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a> --}}
+    <button type="button" class="btn btn-primary order-new btn-lg">登録</button>
 </div>
 <div class="row justify-content-center">
     <div class="table table-striped table-hover">
@@ -37,6 +39,6 @@
     </div>
 </div>
 <div class="lcol text-right mt-3" >
-    <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
-    <button type="button" class="btn btn-primary order-new btn-lg">新規登録</button>
+    {{-- <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a> --}}
+    <button type="button" class="btn btn-primary order-new btn-lg">登録</button>
 </div>

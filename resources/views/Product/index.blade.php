@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     {{-- メッセージ --}}
     @if(session()->has('alert_message'))
         <div class="alert alert-danger">
@@ -12,10 +11,11 @@
             {{session('success_message')}}
         </div>
     @endif
-
-    <h2>商品一覧</h2>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">商品一覧</h1>
+    </div>
     <div class="lcol text-right mb-3">
-        <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
+        {{-- <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a> --}}
         <a href="{{ action('ProductsController@new') }}" class="btn btn-primary btn-lg" >登録</a>
     </div>
     <div class="row justify-content-center">
@@ -67,8 +67,7 @@
         </div>
     </div>
     <div class="lcol text-right mt-3" >
-        <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
+        {{-- <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a> --}}
         <a href="{{ action('ProductsController@new') }}" class="btn btn-primary btn-lg" >登録</a>
     </div>
-</div>
 @endsection
