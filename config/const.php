@@ -27,9 +27,15 @@ return [
         0 => '入庫',
         1 => '出庫',
     ],
-    'DEFINITONS_KBN' => [
+    'HISTORY_TYPE' => [
+        0 => '新規',
+        1 => '編集',
+        2 => '削除'
+    ],
+    'DEFINITONS_TYPE' => [
         0 => 'item',
         1 => 'message',
-        // 3 => 'btn',
+        2 => 'select',
+        3 => 'page',
     ]
 ];
