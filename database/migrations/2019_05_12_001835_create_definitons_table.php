@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemDefinitonsTable extends Migration
+class CreateDefinitonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateItemDefinitonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_definitons', function (Blueprint $table) {
+        Schema::create('definitons', function (Blueprint $table) {
             $table->string('item');
             $table->string('name');
             $table->string('initial_name');
@@ -29,6 +29,6 @@ class CreateItemDefinitonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_definitons');
+        Schema::dropIfExists('definitons');
     }
 }

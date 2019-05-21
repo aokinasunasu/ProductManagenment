@@ -27,4 +27,9 @@ return [
         0 => '入庫',
         1 => '出庫',
     ],
+    'DEFINITONS_KBN' => [
+        0 => 'item',
+        1 => 'message',
+        // 3 => 'btn',
+    ]
 ];
