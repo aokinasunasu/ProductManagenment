@@ -7,11 +7,11 @@
 <div class="container">
     <div id = 'order-form'>
         <div class="form-group row">
-            <label class="col-md-1 col-sm-12 col-form-label">注文No:</label>
+            <label class="col-md-1 col-sm-12 col-form-label">{{$definitions['orders_id']}}:</label>
             <div class="col-sm-2">
                 <input id = "order-id" type="text" class="form-control" name = "id" placeholder="" value="" disabled>
             </div>
-            <label class="col-md-1 col-sm-12 col-form-label">タイプ:</label>
+            <label class="col-md-1 col-sm-12 col-form-label">{{$definitions['orders_type']}}:</label>
             <div class="col-sm-2">
                 <select id = "order-type" class="form-control" name = 'type'>
                     @foreach ( $const['ORDER_TYPE'] as $key => $value)
@@ -20,19 +20,19 @@
                 </select>
             </div>
 
-            <label class="col-md-1 col-sm-12 col-form-label">日付:*</label>
+            <label class="col-md-1 col-sm-12 col-form-label">{{$definitions['orders_date']}}:*</label>
             <div class="col-sm-3">
                 {{-- TODO DatePicker --}}
                 <input id = "order-date" type="datetime-local" value = '{{ $date }}'>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-1 col-sm-12 col-form-label">注文名:*</label>
+            <label class="col-md-1 col-sm-12 col-form-label">{{$definitions['orders_name']}}:*</label>
             <div class="col-sm-5">
                 <input id = "order-name" type="text" class="form-control" name = "name" placeholder="" value="{{ old('name') }}">
                 <span class="text-danger">{{$errors->first('name')}}</span>
             </div>
-            <label class="col-md-1 col-sm-12 col-form-label">取引先:*</label>
+            <label class="col-md-1 col-sm-12 col-form-label">{{$definitions['suppliers_name']}}:*</label>
             <div class="col-sm-3">
                 <select id = "order-supplier" class="form-control" name = 'supplier'>
                     @foreach ( $suppliers as $supplier)
