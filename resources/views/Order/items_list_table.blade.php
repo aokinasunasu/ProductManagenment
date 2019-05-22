@@ -2,9 +2,9 @@
     <table class="table table-bordered table-condensed" id = "order-items-list" data-count = '0'>
         <tr>
             <th style="width: 60px;">削除</th>
-            <th>商品</th>
-            <th>価格</th>
-            <th>数</th>
+            <th>{{$definitions['orders_items_name']}}</th>
+            <th>{{$definitions['orders_items_price']}}</th>
+            <th>{{$definitions['orders_items_num']}}</th>
             @forelse ($itmes as $item )
                 <tr data-id = '{{ $loop->index }}' data-new = '{{ isset($item['id']) ?  0 : 1 }}'>
                     <th>

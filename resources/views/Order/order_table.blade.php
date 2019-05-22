@@ -9,10 +9,10 @@
     <div class="table table-striped table-hover">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <tr>
-                <th>ID</th>
-                <th>タイプ</th>
-                <th>日時</th>
-                <th>注文名</th>
+                <th>{{$definitions['orders_id']}}</th>
+                <th>{{$definitions['orders_type']}}</th>
+                <th>{{$definitions['orders_date']}}</th>
+                <th>{{$definitions['orders_name']}}</th>
             </tr>
             @forelse ($itmes as $item )
                 <tr data-id = '{{ $item->id }}' class = 'order_edit'>

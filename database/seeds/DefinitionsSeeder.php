@@ -69,8 +69,8 @@ class DefinitionsSeeder extends Seeder
             ],
             [
                 'name' => 'suppliers_id',
-                'displey_name' => '取引先名',
-                'defult_name' => '取引先名',
+                'displey_name' => 'ID',
+                'defult_name' => 'ID',
                 'type' => 0,
                 'system_kbn' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -167,7 +167,7 @@ class DefinitionsSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'order_items_name',
+                'name' => 'orders_items_name',
                 'displey_name' => '商品',
                 'defult_name' => '商品',
                 'type' => 0,
@@ -176,7 +176,7 @@ class DefinitionsSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'order_items_price',
+                'name' => 'orders_items_price',
                 'displey_name' => '価格',
                 'defult_name' => '価格',
                 'type' => 0,
@@ -185,7 +185,7 @@ class DefinitionsSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'order_items_num',
+                'name' => 'orders_items_num',
                 'displey_name' => '数量',
                 'defult_name' => '数量',
                 'type' => 0,
@@ -206,6 +206,15 @@ class DefinitionsSeeder extends Seeder
                 'name' => 'purchase_price',
                 'displey_name' => '原単価',
                 'defult_name' => '原単価',
+                'type' => 0,
+                'system_kbn' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'orders_date',
+                'displey_name' => '日付',
+                'defult_name' => '日付',
                 'type' => 0,
                 'system_kbn' => 1,
                 'created_at' => date('Y-m-d H:i:s'),

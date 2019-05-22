@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Product;
 use App\Suppliers;
 use App\OrderItem;
+use App\Definition;
 
 class OrdersController extends Controller
 {
@@ -16,10 +17,12 @@ class OrdersController extends Controller
         // TODO 検索フォーム ページネーション
         $const = config('const');
         $itmes = Order::all();
-        
+        $definitions = $this->getDefinition();
+
         return view('Order.index',[
             'itmes' => $itmes,
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
@@ -27,12 +30,14 @@ class OrdersController extends Controller
         $const = config('const');
         $date = Carbon::now()->format('Y-m-d\TH:i');
         $suppliers = Suppliers::all();
+        $definitions = $this->getDefinition();
         return response()->json([
             'view' => view('Order.new',[
                 'const' => $const,
                 'date' => $date,
                 'itmes' => [],
                 'suppliers' => $suppliers,
+                'definitions' => $definitions
             ])->render()
         ]);
     }
@@ -45,6 +50,7 @@ class OrdersController extends Controller
         $date = Carbon::now()->format('Y-m-d\TH:i');
         $suppliers = Suppliers::all();
         $products = Product::all();
+        $definitions = $this->getDefinition();
 
         return response()->json([
             'view' => view('Order.edit',[
@@ -54,6 +60,7 @@ class OrdersController extends Controller
                 'itmes' => $itmes,
                 'suppliers' => $suppliers,
                 'products' => $products,
+                'definitions' => $definitions
             ])->render(),
             'itmes' => $itmes,
         ]);
@@ -72,11 +79,13 @@ class OrdersController extends Controller
         ];
 
         $itmes[] = $item;
+        $definitions = $this->getDefinition();
 
         return response()->json([
             'view' => view('Order.items_list_table',[
                 'itmes' => $itmes,
                 'products' => $products,
+                'definitions' => $definitions
             ])->render(),
             'itmes' => $itmes,
         ]);
@@ -124,5 +133,31 @@ class OrdersController extends Controller
     // 物理削除なし
     public function delete() {
         return view('Order.index');
+    }
+
+    /**
+     * 項目の定義一覧取得
+     *
+     * @return array
+     */
+    public function getDefinition() {
+
+        $list = [
+            'orders_id',
+            'orders_type',
+            'orders_name',
+            'orders_items_name',
+            'orders_items_price',
+            'orders_items_num',
+            'orders_date',
+            'suppliers_name',
+            'display_order',
+        ];
+        
+        $definition = new Definition;
+
+        $items = $definition->getItemDefinitions($list,true);
+
+        return $items;
     }
 }
