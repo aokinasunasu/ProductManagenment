@@ -5,25 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Product;
+use App\Definition;
 
 class ProductsController extends Controller
 {
+
     public function index(Request $request) {
 
         // TODO 検索フォーム ページネーション
         $const = config('const');
         $itmes = Product::all();
-
+        $definitions = $this->getDefinition();
         return view('Product.index',[
             'itmes' => $itmes,
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
     public function new() {
         $const = config('const');
+        $definitions = $this->getDefinition();
         return view('Product.new',[
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
@@ -35,6 +40,7 @@ class ProductsController extends Controller
             $id = $request->id;
             $form = Product::find($id);
             $const = config('const');
+            $definitions = $this->getDefinition();
 
         } catch (Exception $e) {
             return redirect('/product')->with('alert_message', 'データの取得に失敗しました');
@@ -43,6 +49,7 @@ class ProductsController extends Controller
         return view('Product.edit',[
             'form' => $form,
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
@@ -82,5 +89,30 @@ class ProductsController extends Controller
     // 物理削除なし
     public function delete() {
         return view('Product.index');
+    }
+
+    /**
+     * 項目の定義一覧取得
+     *
+     * @return array
+     */
+    public function getDefinition() {
+
+        $list = [
+            'product_id',
+            'product_code',
+            'product_category',
+            'product_name',
+            'product_abbreviation',
+            'product_image',
+            'unit',
+            'selling_price',
+            'purchase_price',
+        ];
+        $definition = new Definition;
+
+        $items = $definition->getItemDefinitions($list,true);
+
+        return $items;
     }
 }

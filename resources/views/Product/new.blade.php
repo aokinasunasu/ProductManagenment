@@ -2,8 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>新規登録</h1>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2"><i class="fa fa-cubes" aria-hidden="true"></i>新規登録</h1>
+    </div>
     <div class="lcol text-right mb-3" style="padding-bottom: 10px;">
         <a href="{{ action('ProductsController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
     </div>
@@ -11,26 +12,26 @@
         <table class="table table-bordered table-condensed">
             {{ csrf_field() }}
             <tr>
-                <th>code: </th>
+                <th>{{$definitions['product_code']}}: </th>
                 <td colspan="5">
                     <input type="text" class="form-control" name="code" value="{{old('code')}}">
                     <span class="text-danger">{{  $errors->first('code')}}</span>
                 </td>
             </tr>
             <tr>
-                <th>商品名:* </th>
+                <th>{{$definitions['product_name']}}:* </th>
                 <td colspan="6">
                     <input type="text" class="form-control" name="name" value="{{old('name')}}">
                     <span class="text-danger">{{  $errors->first('name')}}</span>
                 </td>
             </tr>
             <tr>
-                <th>略称:*</th>
+                <th>{{$definitions['product_abbreviation']}}:*</th>
                 <td colspan="3">
                     <input type="text" class="form-control" name="abbreviation" value="{{old('abbreviation')}}">
                     <span class="text-danger">{{  $errors->first('abbreviation')}}</span>
                 </td>
-                <th>単位:*</th>
+                <th>{{$definitions['unit']}}:*</th>
                 <td>
                     <select class="form-control" name = 'unit'>
                         @foreach ( $const['UNIT'] as $key => $value)
@@ -41,7 +42,7 @@
                 </td>
             </tr>
             <tr>
-                <th>カテゴリ:*</th>
+                <th>{{$definitions['product_category']}}:*</th>
                 <td>
                     <select class="form-control" name = 'category'>
                         @foreach ( $const['PRODUCT_CATEGORY'] as $key => $value)
@@ -50,19 +51,19 @@
                     </select>
                     <span class="text-danger">{{  $errors->first('category')}}</span>
                 </td>
-                <th>販売単価: </th>
+                <th>{{$definitions['selling_price']}}: </th>
                 <td>
                     <input type="number" class="form-control" name="selling_price" value="{{old('selling_price')}}">
                     <span class="text-danger">{{  $errors->first('selling_price')}}</span>
                 </td>
-                <th>原単価: </th>
+                <th>{{$definitions['purchase_price']}}: </th>
                 <td>
                     <input type="number" class="form-control" name="purchase_price" value="{{old('purchase_price')}}">
                     <span class="text-danger">{{  $errors->first('purchase_price')}}</span>
                 </td>
             </tr>
             <tr>
-                <th>画像</th>
+                <th>{{$definitions['product_image']}}</th>
                 <td colspan="5">
                     <div class="input-group">
                         <input type="file" class="form-control" name="image_url">
@@ -81,5 +82,4 @@
     <div class="lcol text-right mt-3">
         <a href="{{ action('ProductsController@index') }}" class="btn btn-primary btn-lg" >戻る</a>
     </div>
-</div>
 @endsection

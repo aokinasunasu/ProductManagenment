@@ -22,13 +22,13 @@
         <div class="table table-striped table-hover">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr>
-                    <th>ID</th>
-                    <th>code</th>
-                    <th style="width: 80px;">ｶﾃｺﾞﾘ</th>
-                    <th>名前/略語</th>
-                    <th style="width: 60px;">単位</th>
-                    <th style="width: 90px;">販売単価</th>
-                    <th style="width: 80px;">原単価</th>
+                    <th>{{$definitions['product_id']}}</th>
+                    <th>{{$definitions['product_code']}}</th>
+                    <th>{{$definitions['product_category']}}</th>
+                    <th>{{$definitions['product_name']}}/{{$definitions['product_abbreviation']}}</th>
+                    <th style="width: 60px;">{{$definitions['unit']}}</th>
+                    <th style="width: 90px;">{{$definitions['selling_price']}}</th>
+                    <th style="width: 80px;">{{$definitions['purchase_price']}}</th>
                     <th style="width: 95px;">操作</th></tr>
                 @forelse ($itmes as $item )
                 <tr>
