@@ -40,7 +40,7 @@ Route::post('/suppliers/update', 'SuppliersController@update');
 // 削除
 Route::post('/suppliers/delete', 'SuppliersController@delete');
 
-// 入出庫
+// 入出庫 TODO Vue化 API化
 // 一覧
 Route::get('/order', 'OrdersController@index');
 // 新規
@@ -54,6 +54,10 @@ Route::post('/ajax/order/update', 'OrdersController@update');
 // 削除
 Route::post('/order/delete', 'OrdersController@delete');
 
-// 定義
+// 定義 TODO Vue化 API化
 // 一覧
-Route::get('/Definitons', 'DefinitionsController@index');
+Route::get('/definitons', 'DefinitionsController@index');
+// 編集
+Route::post('/ajax/definiton/edit', 'DefinitionsController@edit');
+// 更新
+Route::post('/ajax/definiton/update', 'DefinitionsController@update');

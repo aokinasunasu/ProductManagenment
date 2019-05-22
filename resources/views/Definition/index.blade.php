@@ -52,37 +52,115 @@
         {{$itmes->links()}}
     </div>
     {{-- 表示 --}}
-    <div class="table-responsive @if ($page != $itmes->count()) mt-3 @endif">
-        <table class="table table-striped table-bordered table-hover table-condensed">
-            <tr>
-                <th style="width: 300px;">定義名</th>
-                <th style="width: 80px;">タイプ</th>
-                <th>表示名</th>
-                <th>デフォルト表示</th>
-            @forelse ($itmes as $item )
+    <div id="component1">
+        <div class="table-responsive @if ($page != $itmes->count()) mt-3 @endif">
+            <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr>
-                    <th>
-                        {{ $item->name }}
-                    </th>
-                    <th>
-                        {{ $type[$item->type] }}
-                    </th>
-                    <th>
-                        {{ $item->displey_name }}
-                    </th>
-                    <th>
-                        {{ $item->defult_name }}
-                    </th>
-                </tr>
-            @empty
-                <tr align="center">
-                    <th colspan="8">定義がありません</th>
-                </tr>
-            @endforelse
-        </table>
-    </div>
-    <div class="float-right">
-        {{ $itmes->links() }}
+                    <th style="width: 300px;">定義名</th>
+                    <th style="width: 80px;">タイプ</th>
+                    <th>表示名</th>
+                    <th>デフォルト表示</th>
+                @forelse ($itmes as $item )
+                    <tr class = 'definiton-tr' data-name = '{{ $item->name }}' data-type = '{{ $item->type }}'>
+                        <th>
+                            {{ $item->name }}
+                        </th>
+                        <th>
+                            {{ $type[$item->type] }}
+                        </th>
+                        <th>
+                            {{ $item->displey_name }}
+                        </th>
+                        <th>
+                            {{ $item->defult_name }}
+                        </th>
+                    </tr>
+                @empty
+                    <tr align="center">
+                        <th colspan="8">定義がありません</th>
+                    </tr>
+                @endforelse
+            </table>
+        </div>
+        <div class="float-right">
+            {{ $itmes->links() }}
+        </div>
     </div>
 
+    <div id="component2">
+    </div>
+
+@endsection
+@section('script')
+    <script>
+    $(function(){
+        definiton = [];
+        definiton_item = [];
+        // 通信
+        $http = axios;
+        // csrfトークン設定
+        $http.defaults.headers.common = {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            'X-Requested-With': 'XMLHttpRequest'
+        };
+
+        // 編集
+        jQuery('#component1').on('click', '.definiton-tr', function (event) {
+            console.log('heyyy');
+            console.log($(this).data('name'));
+            console.log($(this).data('type'));
+            $name =$(this).data('name');
+            $type =$(this).data('type');
+            // // 中の要素を削除
+            $('#component2').empty();
+            $http.post('/ajax/definiton/edit',{'name' : $name,'type' : $type})
+            .then(function(response){
+                // 成功したとき
+                response.data;
+                $('#component2').append(response.data['view']);
+                definiton = response.data['definiton']
+                definiton_item = response.data['definiton_item']
+                console.log(response);
+                $('#modal-xl').modal('show');
+            }).catch(function(error){
+                // alert(error.message);
+            });
+        });
+
+        // データの更新
+        jQuery('#component2').on('click', '.save-btn', function (event) {
+            definiton = {
+                name: $('#definiton-name').val(),
+                type: $('#definiton-type').val(),
+                displey_name: $('#definiton-displey-name').val(),
+                defult_name: $('#definiton-defult-name').val(),
+            };
+
+            // TODO サーバー側でバリデーション
+            console.log(definiton);
+            $error = false;
+            switch (definiton['type']) {
+                default :
+                    if (definiton['displey_name'] == '' || definiton['displey_name'] == undefined) {
+                        $error = true;
+                        $('#definiton-displey-name').next().text('必須入力です。');
+                    }
+
+                    break
+            }
+
+            // TODO 画面描画
+            if (!$error) {
+                $http.post('/ajax/definiton/update', {'definiton': definiton , 'definiton_item': definiton_item})
+                .then(function(response){
+                    $('#modal-xl').modal('hide');
+                    location.reload();
+                }).catch(function(error){
+                    bootbox.alert(error);
+                });
+            }
+            console.log($error);
+        });
+    });
+    </script>
 @endsection
