@@ -96,8 +96,6 @@ class OrdersController extends Controller
         $order_form = $request->order;
         $items_form = $request->order_items;
 
-        \Log::info($items_form);
-
         DB::beginTransaction();
         try {
             if ($order_form['id'] == null) {
@@ -121,11 +119,13 @@ class OrdersController extends Controller
         // 注文の一覧再取得
         $const = config('const');
         $itmes = Order::all();
+        $definitions = $this->getDefinition();
 
         return response()->json([
             'view' => view('Order.order_table',[
                 'itmes' => $itmes,
                 'const' => $const,
+                'definitions' => $definitions
             ])->render(),
         ]);
     }

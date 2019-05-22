@@ -2,7 +2,6 @@
 @section('title')
 注文新規登録
 @endsection
-
 @section('content')
 <div class="container">
     <div id = 'order-form'>
