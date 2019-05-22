@@ -16,6 +16,7 @@ class OrdersController extends Controller
         // TODO 検索フォーム ページネーション
         $const = config('const');
         $itmes = Order::all();
+        
         return view('Order.index',[
             'itmes' => $itmes,
             'const' => $const,

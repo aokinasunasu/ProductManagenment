@@ -18,7 +18,7 @@
         {{-- <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a> --}}
         <a href="{{ action('ProductsController@new') }}" class="btn btn-primary btn-lg" >登録</a>
     </div>
-    <div class="row justify-content-center">
+    <div class="">
         <div class="table table-striped table-hover">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr>

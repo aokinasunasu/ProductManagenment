@@ -274,23 +274,15 @@ class DefinitionsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            [
+                'name' => 'street_address',
+                'displey_name' => '住所',
+                'defult_name' => '住所',
+                'type' => 0,
+                'system_kbn' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }
-
-
-            // $table->string('name');
-            // $table->string('displey_name');
-            // $table->string('defult_name');
-            // $table->integer('type');
-            // $table->integer('system_kbn');
-    // 'DEFINITONS_TYPE' => [
-    //     0 => '項目',
-    //     1 => 'メッセージ',
-    //     2 => '選択',
-    //     3 => 'ページ',
-    // ]
-
-                        //  [
-
-            // ],

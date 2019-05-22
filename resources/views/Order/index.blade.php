@@ -111,7 +111,7 @@
                 supplier_id: $('#order-supplier').val(),
             };
 
-            // TODO バリデーション
+            // TODO サーバ側でバリデーション
             error = validate(order,order_items);;
 
             if (!error) {

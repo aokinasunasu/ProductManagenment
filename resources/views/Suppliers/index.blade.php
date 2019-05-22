@@ -22,14 +22,14 @@
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr>
-                    <th>ID</th>
-                    <th>表示順</th>
-                    <th>取引先名</th>
-                    <th>担当者名</th>
-                    <th>郵便番号</th>
-                    <th>電話番号1</th>
-                    <th>電話番号2</th>
-                    <th>住所</th>
+                    <th>{{$definitions['suppliers_id']}}</th>
+                    <th>{{$definitions['display_order']}}</th>
+                    <th>{{$definitions['suppliers_name']}}</th>
+                    <th>{{$definitions['suppliers_contact_name']}}</th>
+                    <th>{{$definitions['post_code']}}</th>
+                    <th>{{$definitions['suppliers_tel1']}}</th>
+                    <th>{{$definitions['suppliers_tel2']}}</th>
+                    <th>{{$definitions['street_address']}}</th>
                     <th>操作</th>
                 </tr>
                 @forelse ($itmes as $item )

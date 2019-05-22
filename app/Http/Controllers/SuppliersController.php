@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Suppliers;
+use App\Definition;
 
 class SuppliersController extends Controller
 {
@@ -12,17 +13,22 @@ class SuppliersController extends Controller
         // TODO 検索フォーム ページネーション
         $const = config('const');
         $itmes = Suppliers::all();
+        $definitions = $this->getDefinition();
 
         return view('Suppliers.index',[
             'itmes' => $itmes,
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
     public function new() {
         $const = config('const');
+        $definitions = $this->getDefinition();
+
         return view('Suppliers.new',[
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
@@ -33,6 +39,7 @@ class SuppliersController extends Controller
             $id = $request->id;
             $form = Suppliers::find($id);
             $const = config('const');
+            $definitions = $this->getDefinition();
 
         } catch (Exception $e) {
             return redirect('/product')->with('alert_message', 'データの取得に失敗しました');
@@ -41,6 +48,7 @@ class SuppliersController extends Controller
         return view('Suppliers.edit',[
             'form' => $form,
             'const' => $const,
+            'definitions' => $definitions
         ]);
     }
 
@@ -66,5 +74,35 @@ class SuppliersController extends Controller
     // 物理削除なし
     public function delete() {
         return view('Product.index');
+    }
+
+    /**
+     * 項目の定義一覧取得
+     *
+     * @return array
+     */
+    public function getDefinition() {
+
+        $list = [
+            'suppliers_id',
+            'suppliers_name',
+            'suppliers_abbreviation',
+            'suppliers_contact_name',
+            'suppliers_street_address1',
+            'suppliers_street_address2',
+            'suppliers_tel1',
+            'suppliers_tel2',
+            'fax_number',
+            'url',
+            'display_order',
+            'post_code',
+            'street_address',
+        ];
+        
+        $definition = new Definition;
+
+        $items = $definition->getItemDefinitions($list,true);
+
+        return $items;
     }
 }
