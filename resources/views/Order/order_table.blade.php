@@ -5,7 +5,7 @@
     {{-- <a href="{{ action('HomeController@index') }}" class="btn btn-primary btn-lg" >戻る</a> --}}
     <button type="button" class="btn btn-primary order-new btn-lg">登録</button>
 </div>
-<div class="row justify-content-center">
+<div class="">
     <div class="table table-striped table-hover">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <tr>
