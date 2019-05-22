@@ -292,6 +292,34 @@ class DefinitionsSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
+            // 選択
+            [
+                'name' => 'product_category',
+                'displey_name' => '商品カテゴリ',
+                'defult_name' => '商品カテゴリ',
+                'type' => 1,
+                'system_kbn' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'order_type',
+                'displey_name' => '注文タイプ',
+                'defult_name' => '注文タイプ',
+                'type' => 1,
+                'system_kbn' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => 'unit',
+                'displey_name' => '単位',
+                'defult_name' => '単位',
+                'type' => 1,
+                'system_kbn' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 }
