@@ -2,7 +2,7 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item active">
-                <a class="nav-link " href="">
+                <a class="nav-link " href="{{ action('UserController@index') }}">
                     <i class="fa fa-users  fa-2x" aria-hidden="true"></i>
                     ユーザー <span class="sr-only"></span>
                 </a>

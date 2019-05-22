@@ -18,6 +18,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
+    // ユーザー
+    // 一覧
+    Route::get('/user', 'UserController@index');
+    // 閲覧
+    Route::get('/user/show', 'UserController@show');
+
     // 商品
     // 一覧
     Route::get('/product', 'ProductsController@index');
