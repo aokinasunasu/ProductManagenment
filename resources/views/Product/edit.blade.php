@@ -16,9 +16,9 @@
                 <th>{{$definitions['product_image']}}: </th>
                 <td colspan="5">
                     @if ($form->image_url == '')
-                        <img src="/storage/none.jpeg" width="500" height="300">
+                        <img src="/storage/none.jpeg" width="300" height="300">
                     @else
-                        <img src="/storage/{{$form->image_url}}" width="500" height="300">
+                        <img src="/storage/{{$form->image_url}}" width="300" height="300">
                     @endif
                 </td>
             </tr>
@@ -57,7 +57,7 @@
                 <td>
                     <select class="form-control" name = 'category'>
                         @foreach ( $const['PRODUCT_CATEGORY'] as $key => $value)
-                            <option value={{$key}} @if($form->unit ==$key) selected @endif>{{$value}}</option>
+                            <option value={{$key}} @if($form->category ==$key) selected @endif>{{$value}}</option>
                         @endforeach
                     </select>
                     <span class="text-danger">{{ $errors->first('category')}}</span>
