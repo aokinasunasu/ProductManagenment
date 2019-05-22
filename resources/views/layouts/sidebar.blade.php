@@ -4,7 +4,7 @@
             <li class="nav-item active">
                 <a class="nav-link " href="">
                     <i class="fa fa-users  fa-2x" aria-hidden="true"></i>
-                    アカウント <span class="sr-only"></span>
+                    ユーザー <span class="sr-only"></span>
                 </a>
             </li>
             {{-- <li class="nav-item">

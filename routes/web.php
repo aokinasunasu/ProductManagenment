@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::group(['middleware' => 'auth'], function () {
     // 商品
     // 一覧
