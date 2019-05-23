@@ -32,9 +32,6 @@
             <div class="col-sm-3">
                 <input id = "definiton-defult-name" type="text" class="form-control" name = "defult_name" placeholder="" value="{{ $definiton->defult_name }}" disabled>
             </div>
-            <div class="col-2">
-                {{-- <button type="button" class="btn btn-primary" id = "definiton-items-add">追加</button> --}}
-            </div>
         </div>
     </div>
 </div>

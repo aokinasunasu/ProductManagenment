@@ -39,13 +39,19 @@ class DefinitionsController extends Controller
     }
 
     public function edit(Request $request) {
-        $name = $request['name'];
-        $definiton = Definition::find($name);
+
+        $where = [
+            'name'    => $request['name'],
+            'type' => $request['type'],
+        ];
+
+        $definiton = Definition::where($where)->first();
+        
         $type = config('const.DEFINITONS_TYPE');
 
         return response()->json([
             'view' => view('Definition.edit',[
-                 'definiton' => $definiton,
+                'definiton' => $definiton,
                 'type' => $type,
             ])->render(),
             'definiton' => $definiton,

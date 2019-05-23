@@ -17,7 +17,11 @@ class CreateDefinitionItemsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('display_order');
             $table->string('definition_name');
-            $table->string('value');
+            $table->string('value1')->nullable();
+            $table->string('value2')->nullable();
+            $table->string('value3')->nullable();
+            $table->string('value4')->nullable();
+            $table->string('value5')->nullable();
             $table->integer('enabled_flg');
             $table->integer('system_kbn');
             $table->timestamps();

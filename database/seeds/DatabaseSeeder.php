@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SuppliersTableSeeder::class);
         // 定義
         $this->call(DefinitionsSeeder::class);
-
+        // 定義アイテム
+        $this->call(DefinitionItemsSeeder::class);
     }
 }
